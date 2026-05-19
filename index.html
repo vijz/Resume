@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vijaya Krishnani · Senior Business Analyst</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #1a1a1a; color: #fff; }
+  a { text-decoration: none; color: inherit; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(20,20,20,0.95); backdrop-filter: blur(8px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav .logo { font-size: 14px; font-weight: 600; letter-spacing: 0.05em; color: #fff; }
+  nav .nav-links { display: flex; gap: 20px; align-items: center; }
+  nav .nav-links a { font-size: 13px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+  nav .nav-links a:hover { color: #fff; }
+  nav .cv-btn {
+    font-size: 12px; padding: 7px 14px; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px; color: #fff; background: transparent; cursor: pointer;
+    transition: background 0.2s;
+  }
+  nav .cv-btn:hover { background: rgba(255,255,255,0.1); }
+
+  section { padding: 80px 24px; }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 100px;
+    background: #1a1a1a;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: rgba(255,255,255,0.02); pointer-events: none;
+  }
+  .hero-photo {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: rgba(255,255,255,0.5);
+    margin-bottom: 28px; letter-spacing: 0.05em; overflow: hidden;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.6);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 52px; font-weight: 700; line-height: 1.05;
+    color: #fff; margin-bottom: 16px; letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: rgba(255,255,255,0.35); }
+  .hero-sub {
+    font-size: 15px; color: rgba(255,255,255,0.7); max-width: 340px;
+    line-height: 1.7; margin-bottom: 36px;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .hero-tag {
+    font-size: 11px; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; color: rgba(255,255,255,0.7); letter-spacing: 0.04em;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 12px 24px; background: #fff; color: #1a1a1a;
+    border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    border: none; transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary {
+    padding: 12px 24px; background: transparent; color: #fff;
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.07); }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0 24px; }
+
+  /* Case studies */
+  .case-grid { display: flex; flex-direction: column; gap: 16px; }
+  .case-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .case-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.15); }
+  .case-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .case-domain {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); padding: 3px 8px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+  }
+  .case-arrow { color: rgba(255,255,255,0.25); font-size: 16px; }
+  .case-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .case-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 14px; }
+  .case-meta { display: flex; gap: 16px; }
+  .case-meta-item { font-size: 11px; color: rgba(255,255,255,0.3); }
+  .case-meta-item strong { color: rgba(255,255,255,0.65); display: block; font-size: 13px; margin-bottom: 2px; }
+
+  /* Modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.85); overflow-y: auto; padding: 24px 16px;
+  }
+  .modal-overlay.open { display: block; }
+  .modal {
+    background: #1f1f1f; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; max-width: 500px; margin: 0 auto; padding: 28px;
+  }
+  .modal-close {
+    float: right; background: none; border: none; color: rgba(255,255,255,0.4);
+    font-size: 20px; cursor: pointer; line-height: 1;
+  }
+  .modal-domain {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 12px; clear: both; display: block;
+  }
+  .modal h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section h4 { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+  .modal-section p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .modal-outcome {
+    background: rgba(255,255,255,0.05); border-radius: 8px; padding: 14px;
+    margin-bottom: 20px;
+  }
+  .modal-outcome .metric { font-size: 26px; font-weight: 700; color: #fff; }
+  .modal-outcome .metric-label { font-size: 12px; color: rgba(255,255,255,0.4); }
+  .modal-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+  .modal-tool {
+    font-size: 11px; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; color: rgba(255,255,255,0.45);
+  }
+
+  /* Skills */
+  .skills-group { margin-bottom: 28px; }
+  .skills-group-title { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+  .skills-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    font-size: 12px; padding: 7px 14px; border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; color: rgba(255,255,255,0.75);
+  }
+
+  /* Contact */
+  .contact-line { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 24px; line-height: 1.6; }
+  .contact-form { display: flex; flex-direction: column; gap: 12px; }
+  .contact-form input, .contact-form textarea {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 14px;
+    font-family: inherit; outline: none; transition: border-color 0.2s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(255,255,255,0.3); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.2); }
+  .contact-form textarea { resize: vertical; min-height: 100px; }
+  .social-links { display: flex; gap: 16px; margin-top: 20px; }
+  .social-link { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; transition: color 0.2s; }
+  .social-link:hover { color: rgba(255,255,255,0.7); }
+  .avail-badge {
+    display: inline-block; margin-top: 16px; font-size: 11px; padding: 6px 12px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+    color: rgba(255,255,255,0.4);
+  }
+  .avail-dot { display: inline-block; width: 6px; height: 6px; background: #5dca8a; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+  footer {
+    padding: 24px; border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 12px; color: rgba(255,255,255,0.2); text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 36px; }
+    nav .nav-links a { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     CONFIG — Edit only this section for most updates
+     ===================================================================== -->
+<script>
+const CONFIG = {
+  name:           "Vijaya Krishnani",
+  title:          "Senior Business Analyst",
+  cv_link:        "#",                        // paste your CV URL here
+  linkedin:       "https://www.linkedin.com/in/vijaya-k-72888668/",  // update this
+  email:          "vijaya24.krishnani@gmail.com",           // update this
+  available:      "Open to contracts · UK & Europe",
+  case_studies:   [
+    // Add links to other case studies here as you build them
+    // { title: "AML Copilot", url: "https://campsite.bio/vijaya.krishnani" },
+  ]
+};
+</script>
+
+<nav>
+  <span class="logo" id="nav-name"></span>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="#" id="nav-cv-btn"><button class="cv-btn" visibility: hidden> Download CV ↓</button></a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <!-- To add your photo: replace the VK initials with <img src="IMG-20251121-WA0012.jpg" alt="Vijaya Krishnani"> -->
+  <div class="hero-photo" id="hero-photo"> <img src="CYMERA_20230629_191135.jpg" alt="Vijaya Krishnani"> </div>
+  <p class="hero-eyebrow">Senior Business Analyst · Regulated Industries</p>
+  <h1>Turning complex<br>requirements into<br><span>clear outcomes.</span></h1>
+  <p class="hero-sub">11 years across fintech, pharma and regulated industries. Open to remote contract roles on UK and EU hours.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">11+ Years Experience</span>
+    <span class="hero-tag">Regulated Industries</span>
+    <span class="hero-tag">Fintech & Pharma</span>
+    <span class="hero-tag">GxP Aware</span>
+    <span class="hero-tag">Remote · UK/EU Hours</span>
+  </div>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View My Work</button>
+    <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="work">
+  <p class="section-label">Case Studies</p>
+  <p class="section-title">Selected Work</p>
+  <div class="case-grid">
+
+    <!-- CASE STUDY 1 -->
+    <div class="case-card" onclick="openModal('cs1')">
+      <div class="case-top">
+        <span class="case-domain">Life Sciences / GxP</span>
+        <span class="case-arrow">→</span>
+      </div>
+      <p class="case-title">ValDoc: GxP Validation Document Generator</p>
+      <p class="case-desc">Identified a systemic drafting bottleneck inside a pharma CRO validation cycle and built a guided doc-initiation tool to shift the validation lead from author to reviewer.</p>
+      <div class="case-meta">
+        <div class="case-meta-item"><strong>~8 hrs</strong>Saved per document</div>
+        <div class="case-meta-item"><strong>Vibe Coding · GxP</strong>Tools</div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 3 -->
+    <div class="case-card" onclick="openModal('cs3')">
+      <div class="case-top">
+        <span class="case-domain">Automation</span>
+        <span class="case-arrow">→</span>
+      </div>
+      <p class="case-title">UiPath Certification Chaser — Claude Cowork Workflow</p>
+      <p class="case-desc">Built a scheduled workflow to chase 99 employees for certification details, auto-update a SharePoint Excel on replies, and free up 2 to 3 hours every other day.</p>
+      <div class="case-meta">
+        <div class="case-meta-item"><strong>2–3 hrs</strong>Saved every other day</div>
+        <div class="case-meta-item"><strong>Claude Cowork · Teams</strong>Tools</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="skills">
+  <p class="section-label">Capabilities</p>
+  <p class="section-title">Skills & Tools</p>
+
+  <!-- Skills — edit pills here or in CONFIG above -->
+  <div class="skills-group">
+    <p class="skills-group-title">Requirements & Analysis</p>
+    <div class="skills-pills">
+      <span class="skill-pill">PDD Authoring</span>
+      <span class="skill-pill">Process Mapping</span>
+      <span class="skill-pill">Gap Analysis</span>
+      <span class="skill-pill">Regulatory Requirements Traceability</span>
+      <span class="skill-pill">User Stories</span>
+      <span class="skill-pill">Acceptance Criteria</span>
+      <span class="skill-pill">UAT Coordination</span>
+      <span class="skill-pill">BPMN</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-title">Regulated Frameworks</p>
+    <div class="skills-pills">
+      <span class="skill-pill">21 CFR Part 11</span>
+      <span class="skill-pill">EU GMP Annex 11</span>
+      <span class="skill-pill">GAMP 5</span>
+      <span class="skill-pill">SOX</span>
+      <span class="skill-pill">AML</span>
+      <span class="skill-pill">Data Governance</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-title">Agile & Delivery</p>
+    <div class="skills-pills">
+      <span class="skill-pill" visibility: hidden>SAFe</span>
+      <span class="skill-pill">Scrum</span>
+      <span class="skill-pill">Kanban</span>
+      <span class="skill-pill">Sprint Planning</span>
+      <span class="skill-pill">Stakeholder Management</span>
+      <span class="skill-pill">Virtual Workshop Facilitation</span>
+      <span class="skill-pill">Distributed Team Collaboration</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-title">Automation & AI</p>
+    <div class="skills-pills">
+      <span class="skill-pill">Agentic AI Workflows</span>
+      <span class="skill-pill">UiPath</span>
+      <span class="skill-pill">MS Power Platform</span>
+      <span class="skill-pill">Claude AI</span>
+	<span class="skill-pill">Copilot AI</span>
+      <span class="skill-pill">Process Automation</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-title">Tools</p>
+    <div class="skills-pills">
+      <span class="skill-pill">Jira</span>
+      <span class="skill-pill">Confluence</span>
+      <span class="skill-pill">Azure DevOps</span>
+      <span class="skill-pill">Appian</span>
+      <span class="skill-pill">DocuSign</span>
+      <span class="skill-pill">Excel</span>
+      <span class="skill-pill" visibility: hidden>Power BI</span>
+      <span class="skill-pill" visibility: hidden>Figma</span>
+      <span class="skill-pill">Slack / Teams</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <p class="section-label">Get In Touch</p>
+  <p class="section-title">Let's Talk</p>
+  <p class="contact-line">Reach out on LinkedIn or drop me an email — I respond within a day.</p>
+  <div class="social-links">
+    <a class="social-link" id="contact-linkedin" href="#" target="_blank">LINKEDIN ↗</a>
+    <a class="social-link" id="contact-email" href="#">EMAIL ↗</a>
+  </div>
+  <span class="avail-badge" id="contact-avail"><span class="avail-dot"></span></span>
+</section>
+
+<!-- EDIT: Replace "Your Name" -->
+<footer>© 2026 Vijaya Krishnani · Senior Business Analyst</footer>
+
+<!-- Modal overlay -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+// ===================== EDIT: Update case study details here =====================
+const cases = {
+  cs1: {
+    domain: 'Life Sciences / GxP',
+    title: 'ValDoc: GxP Validation Document Generator',
+    background: 'In pharma SDLC, every system going live needs a stack of GxP documents before it can. The expectation is that the tech team drafts and the validation lead reviews. What actually happens is the validation lead gets a blank template and ends up writing it themselves.',
+    challenge: 'Each document was taking 8 to 9 hours to produce. Not because the content was hard to find, but because pulling it out of engineers in an unstructured way was slow and often incomplete. Rushed drafts meant inconsistent docs, and in a GxP environment inconsistency is an audit finding. I was the validation lead and I was spending most of my time rewriting, not reviewing. The most expensive resource in the chain was being used on the wrong work.',
+    approach: 'The template wasn\'t the problem. Engineers didn\'t know what to put in it, and there was never enough time to walk everyone through it each cycle. After that project wrapped I kept thinking about it. So I built something that asks them the right questions instead of handing them a blank page. They answer, the system builds the draft, you review. I kept AI generation out of it because in GxP, if you can\'t point to who decided something, you have a problem. Built a working prototype with vibe coding to see if the idea actually held up. Still iterating on it — v1 covers the core doc types, next is looking at how review and sign-off could work inside the same flow.',
+    metric: '~8 hrs',
+    metricLabel: 'Saved per document drafted',
+    tools: ['21 CFR Part 11', 'EU GMP Annex 11', 'GAMP 5', 'URS', 'Vibe Coding', 'HTML/JS'],
+    demo: 'https://vijz.github.io/ValDoc/'
+  },
+  cs3: {
+    domain: 'Automation',
+    title: 'UiPath Certification Chaser — Claude Cowork Workflow',
+    background: 'The practice was working towards an upgraded UiPath partner tier and needed certification details from 99 employees to get there. That meant someone had to chase all of them, track who responded, and keep the Excel up to date. It landed on me.',
+    challenge: 'Doing it manually was taking 2 to 3 hours every other day. Filter who hasn\'t responded, write the chasers, send them, wait, update the tracker, repeat. It wasn\'t hard work, but it was constant and it was mine to own every single time.',
+    approach: 'I built a workflow in Claude Cowork that runs three times a week at 11:45am, when I knew my laptop would be on. Before it sends anything it checks who responded since the last run and updates the SharePoint Excel with their details. Then it sends the next round of chasers, filtered by project, 20 to 30 at a time. It\'s still running — not everyone has come back yet. I also wrote a reusable prompt for it so the same setup can be picked up for similar work without starting from scratch.',
+    metric: '2–3 hrs',
+    metricLabel: 'Saved every other day',
+    tools: ['Claude Cowork', 'Microsoft Teams', 'Excel', 'SharePoint']
+  }
+};
+
+function openModal(id) {
+  const c = cases[id];
+  document.getElementById('modal-content').innerHTML = `
+    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
+    <span class="modal-domain">${c.domain}</span>
+    <h2>${c.title}</h2>
+    <div class="modal-outcome">
+      <div class="metric">${c.metric}</div>
+      <div class="metric-label">${c.metricLabel}</div>
+    </div>
+    <div class="modal-section"><h4>Background</h4><p>${c.background}</p></div>
+    <div class="modal-section"><h4>Challenge</h4><p>${c.challenge}</p></div>
+    <div class="modal-section"><h4>My Approach</h4><p>${c.approach}</p></div>
+    <div class="modal-section"><h4>Tools Used</h4><div class="modal-tools">${c.tools.map(t=>`<span class="modal-tool">${t}</span>`).join('')}</div></div>
+    ${c.demo ? `<div class="modal-section"><a href="${c.demo}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,0.25);padding:9px 16px;border-radius:8px;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='transparent'">View Live Demo ↗</a></div>` : ''}
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('nav-name').textContent = CONFIG.name;
+  const cvBtn = document.getElementById('nav-cv-btn');
+  if (CONFIG.cv_link && CONFIG.cv_link !== '#') {
+    cvBtn.href = CONFIG.cv_link;
+    cvBtn.setAttribute('download', '');
+  }
+  const li = document.getElementById('contact-linkedin');
+  if (li) li.href = CONFIG.linkedin;
+  const em = document.getElementById('contact-email');
+  if (em) em.href = 'mailto:' + CONFIG.email;
+  const badge = document.getElementById('contact-avail');
+  if (badge) badge.innerHTML = '<span class="avail-dot"></span>' + CONFIG.available;
+});
+
+</script>
+
+</body>
+</html>
